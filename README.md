@@ -35,5 +35,6 @@ npm install dotenv
 // Instalar para encriptar claves
 npm install bcrypt
 
+npm i swagger-jsdoc
 
 ```
