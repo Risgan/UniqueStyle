@@ -13,12 +13,12 @@ const createUser = async ({ username, email, password }) => {
 
 // Obtener todos los usuarios
 const getAllUsers = async () => {
-  return await userRepository.findAllUsers();
+  return await userRepository.getAllUsers();
 };
 
 // Obtener un usuario por ID
 const getUserById = async (id) => {
-  return await userRepository.findUserById(id);
+  return await userRepository.getUserById(id);
 };
 
 // Actualizar un usuario
