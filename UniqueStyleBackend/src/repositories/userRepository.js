@@ -1,44 +1,45 @@
 const db = require('../config/firebaseConfig');
 
-class ProductRepository {
-    // Crear un producto
-    async createProduct(product) {
-        const productRef = db.collection('products').doc(); // Genera un ID único para el producto
-        await productRef.set(product);
-        return { id: productRef.id, ...product };
+class UserRepository {
+    // Crear un usuario
+    async createUser(user) {
+        const userRef = db.collection('users').doc(); // Genera un ID único para el usuario
+        await userRef.set(user);
+        return { id: userRef.id, ...user };
     }
 
-    // Obtener todos los productos
-    async getAllProducts() {
-        const productsSnapshot = await db.collection('products').get();
-        const products = [];
-        productsSnapshot.forEach(doc => {
-            products.push({ id: doc.id, ...doc.data() });
+    // Obtener todos los usuarios
+    async getAllUsers() {
+        const usersSnapshot = await db.collection('users').get();
+        const users = [];
+        usersSnapshot.forEach(doc => {
+            users.push({ id: doc.id, ...doc.data() });
         });
-        return products;
+        return users;
     }
 
-    // Obtener un producto por ID
-    async getProductById(id) {
-        const productDoc = await db.collection('products').doc(id).get();
-        if (!productDoc.exists) {
-            throw new Error('Product not found');
+    // Obtener un usuario por ID
+    async getUserById(id) {
+        const userDoc = await db.collection('users').doc(id).get();
+        if (!userDoc.exists) {
+            throw new Error('User not found');
         }
-        return { id: productDoc.id, ...productDoc.data() };
+        return { id: userDoc.id, ...userDoc.data() };
     }
 
-    // Actualizar un producto por ID
-    async updateProduct(id, updatedData) {
-        const productRef = db.collection('products').doc(id);
-        await productRef.update(updatedData);
+    // Actualizar un usuario por ID
+    async updateUser(id, updatedData) {
+        const userRef = db.collection('users').doc(id);
+        await userRef.update(updatedData);
         return { id, ...updatedData };
     }
 
-    // Eliminar un producto por ID
-    async deleteProduct(id) {
-        await db.collection('products').doc(id).delete();
-        return { message: 'Product deleted successfully' };
+    // Eliminar un usuario por ID
+    async deleteUser(id) {
+        const userRef = db.collection('users').doc(id);
+        await userRef.delete();
+        return { message: 'User deleted successfully' };
     }
 }
 
-module.exports = new ProductRepository();
+module.exports = new UserRepository();
