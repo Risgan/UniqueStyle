@@ -1,6 +1,6 @@
 // src/services/userService.js
 const userRepository = require('../repositories/userRepository');
-const UserModel = require('../models/UserModel');
+const UserModel = require('../models/userModel');
 
 // Crear un nuevo usuario
 const createUser = async ({ username, email, password }) => {
