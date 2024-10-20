@@ -208,16 +208,9 @@ npm run dev // Inica el proyecto en modo desarrollo
 
 ![alt text](image-32.png)
 
+4. url del proyecto desplegado en **Railway**
 
-
-
-![alt text](image-38.png)
-
-![alt text](image-39.png)
-
-![alt text](image-40.png)
-
-![alt text](image-41.png)
+   https://lumistore-production.up.railway.app/api-docs/
 
 ## Fontend
   Se realizara en Angular 18.
