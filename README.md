@@ -72,6 +72,29 @@
 
    ![alt text](image-18.png)
 
+   13. Vamos a ** configuracion**, y damos click en **Configuracion del proyecto**
+
+   ![alt text](image-33.png)
+
+   ![alt text](image-34.png)
+
+   ![alt text](image-35.png)
+
+   ![alt text](image-36.png)
+
+   ![alt text](image-37.png)
+
+
+   ```C#
+   apiKey: "AIzaSyAaqZPaLKFTvu3nhPRT93GF9mAzBex88fw",
+   authDomain: "uniquestyledatabase.firebaseapp.com",
+   projectId: "uniquestyledatabase",
+   storageBucket: "uniquestyledatabase.appspot.com",
+   messagingSenderId: "80996427517",
+   appId: "1:80996427517:web:b5287de150192e2dda4094",
+   measurementId: "G-MDL6Q0PTP3"
+   ```
+
 ## Backend
 
 ### Requisitos
@@ -184,6 +207,17 @@ npm run dev // Inica el proyecto en modo desarrollo
 3. Para validar que este funcionando correctamente, ingresamos a nuestro navegador y ponemos la url **http://localhost:5000/api-docs** donde veremos una interfaz de Swagger con las peticiones disponibles del proyecto.
 
 ![alt text](image-32.png)
+
+
+
+
+![alt text](image-38.png)
+
+![alt text](image-39.png)
+
+![alt text](image-40.png)
+
+![alt text](image-41.png)
 
 ## Fontend
   Se realizara en Angular 18.
