@@ -11,7 +11,6 @@ const options = {
         servers: [
             {
                 url: 'http://localhost:5000',
-                description: 'Servidor Local para Desarrollo',
             },
         ],
         components: {
