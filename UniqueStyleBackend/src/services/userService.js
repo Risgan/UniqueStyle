@@ -27,12 +27,12 @@ const getUserById = async (id) => {
 
 // Actualizar un usuario
 const updateUser = async (id, updatedData) => {
-  return await userRepository.updateUserInFirebase(id, updatedData);
+  return await userRepository.updateUser(id, updatedData);
 };
 
 // Eliminar un usuario
 const deleteUser = async (id) => {
-  return await userRepository.deleteUserInFirebase(id);
+  return await userRepository.deleteUser(id);
 };
 
 module.exports = { 
