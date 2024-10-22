@@ -1,14 +1,18 @@
 // src/services/userService.js
 const userRepository = require('../repositories/userRepository');
 const UserModel = require('../models/userModel');
+const bcrypt = require('bcrypt');
 
 // Crear un nuevo usuario
 const createUser = async ({ username, email, password }) => {
   // Crear una instancia del modelo con los datos proporcionados
-  const user = new UserModel({ username, email, password });
+  const saltRounds = 10;
+  const passwordEncri = await bcrypt.hash(password, saltRounds);
+
+  const user = new UserModel({ username, email, password: passwordEncri });
   
   // Llamar al repositorio para guardar el usuario en Firebase
-  return await userRepository.createUserInFirebase(user);
+  return await userRepository.createUser(user);
 };
 
 // Obtener todos los usuarios
