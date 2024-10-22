@@ -3,9 +3,11 @@ const db = require('../config/firebaseConfig');
 class UserRepository {
     // Crear un usuario
     async createUser(user) {
+        const plainUserObject = JSON.parse(JSON.stringify(user));
+
         const userRef = db.collection('users').doc(); // Genera un ID único para el usuario
-        await userRef.set(user);
-        return { id: userRef.id, ...user };
+        await userRef.set(plainUserObject); // Guarda el objeto plano en Firestore
+        return { id: userRef.id, ...plainUserObject };
     }
 
     // Obtener todos los usuarios
