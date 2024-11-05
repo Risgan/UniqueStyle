@@ -1,23 +1,95 @@
 <div class="content">
-  <header>
-      <div class="head">
-          <div class="logo">
-              <img src="/assets/logo.png" alt="Logo de la tienda">
-          </div>
-          <div class="titulo">
-              <h3>Unique Style</h3>
-          </div>
-          <div class="acciones">
-              <div class="carrito">
-                  <p-button icon="pi pi-shopping-cart" />
-              </div>
-              <div class="usuario">
-                  <p-button icon="pi pi-user" />
-  
-              </div>
-          </div>
-      </div>    
-  </header>
-  <main></main>
-  <footer></footer>
+
+
+
+    <header>
+        <div class="head">
+            <div class="logo">
+                <img src="/assets/logo.png" alt="Logo de la tienda">
+            </div>
+            <div class="titulo">
+                <h3>Unique Style</h3>
+            </div>
+            <div class="acciones">
+                <div class="usuario">
+                    <p-button icon="pi pi-user" [rounded]="true" />
+
+                </div>
+            </div>
+        </div>
+    </header>
 </div>
+<main>
+    <div class="main-content">
+        <div class="float-button">
+            <p-button icon="pi pi-shopping-cart" [rounded]="true">
+                @if (elementsCart.length > 0) {
+                <div class="badge">
+                    <p-badge [value]="2" severity="danger" />
+                </div>
+                }
+            </p-button>
+
+        </div>
+
+        <div class="message">
+            <p>✨ ¡Descubre la Elegancia en Cada Detalle! ✨ Transforma tu guardarropa con la sofisticación y el estilo
+                único que solo Unique Style puede ofrecer. Moda masculina que marca la diferencia, con diseños
+                minimalistas que destacan tu personalidad. ¡Ven y redefine tu estilo hoy! 👔✨</p>
+        </div>
+
+        <div class="sub-content">
+            <div class="target">
+
+                <div class="card flex justify-content-center">
+                    <p-fieldset legend="Header">
+                        <p class="m-0">
+                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
+                            laboris nisi ut aliquip ex ea commodo
+                            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
+                            fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
+                            officia deserunt mollit anim id est laborum.
+                        </p>
+                    </p-fieldset>
+                </div>
+            </div>
+        </div>
+
+        
+        
+
+    </div>
+
+
+</main>
+<footer></footer>
+
+<p-dialog header="Login" [modal]="true" [closable]="false" [(visible)]="visible" [style]="{ width: '25rem' }">
+    <br>
+    <br>
+    
+    <div class="flex align-items-center gap-3 mb-4">
+        <p-floatLabel>
+            <input id="correo" type="text" pInputText [(ngModel)]="email" />
+            <label for="correo">Correo</label>
+        </p-floatLabel>
+    </div>
+
+    <br>
+    <br>
+    
+    <div class="flex justify-content-end gap-2 mt-4">
+        <p-floatLabel>
+            <p-password [(ngModel)]="password" [toggleMask]="true" [feedback]="false" />
+            <label for="password">Password</label>
+        </p-floatLabel>
+    </div>
+
+    <br>
+    <br>
+    
+    <div class="flex justify-content-end gap-2 mt-4">
+        <p-button label="Login" (onClick)="visible = false" [rounded]="true"></p-button>
+    </div>
+</p-dialog>
