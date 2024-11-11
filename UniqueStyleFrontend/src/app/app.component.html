@@ -1,6 +1,6 @@
+<p-toast />
+
 <div class="content">
-
-
 
     <header>
         <div class="head">
@@ -22,10 +22,10 @@
 <main>
     <div class="main-content">
         <div class="float-button">
-            <p-button icon="pi pi-shopping-cart" [rounded]="true">
+            <p-button icon="pi pi-shopping-cart" (onClick)="showSide()" [rounded]="true">
                 @if (elementsCart.length > 0) {
                 <div class="badge">
-                    <p-badge [value]="2" severity="danger" />
+                    <p-badge [value]="elementsCart.length" severity="danger" />
                 </div>
                 }
             </p-button>
@@ -38,7 +38,7 @@
                 minimalistas que destacan tu personalidad. ¡Ven y redefine tu estilo hoy! 👔✨</p>
         </div>
 
-        <div class="sub-content">
+        <!-- <div class="sub-content">
             <div class="target">
 
                 <div class="card flex justify-content-center">
@@ -51,13 +51,58 @@
                             fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
                             officia deserunt mollit anim id est laborum.
                         </p>
+                        <div class="buttons">
+                            <p>$1.220</p>
+                            <p-button label="Agregar" icon="pi-cart-plus"  (onClick)="addCart(product)" [rounded]="true"></p-button>
+                        </div>
                     </p-fieldset>
                 </div>
             </div>
+        </div> -->
+
+        <div class="list-products">
+            @for (product of listProducts; track $index) {
+
+            <div class="sub-content">
+                <div class="target">
+
+                    <div class="card flex justify-content-center">
+                        <p-fieldset [legend]="product.title">
+                            <p class="m-0">
+                                {{product.description}}
+                            </p>
+                            <div class="carrusel">
+
+                                <p-carousel [value]="product.images" [numVisible]="3" [numScroll]="1" [circular]="false"
+                                    [responsiveOptions]="responsiveOptions" autoplayInterval="3000">
+                                    <ng-template let-iamge pTemplate="item">
+                                        <div class="border-1 surface-border border-round m-2 p-3">
+                                            <div class="mb-3">
+                                                <div class="relative mx-auto">
+                                                    <img src="{{iamge}}"
+                                                        [alt]="iamge" class="w-full border-round image-carrusel" />
+                                                    
+                                                </div>
+                                            </div>                                           
+                                        </div>
+                                    </ng-template>
+                                </p-carousel>
+
+                            </div>
+                            <div class="buttons">
+                                <p>{{product.price | currency:'USD':'symbol':'1.0-0'}}</p>
+                                <p-button label="Agregar" icon="pi pi-cart-plus" (onClick)="addCart(product)"
+                                    [rounded]="true"></p-button>
+                            </div>
+                        </p-fieldset>
+                    </div>
+                </div>
+            </div>
+            }
         </div>
 
-        
-        
+
+
 
     </div>
 
@@ -68,28 +113,53 @@
 <p-dialog header="Login" [modal]="true" [closable]="false" [(visible)]="visible" [style]="{ width: '25rem' }">
     <br>
     <br>
-    
-    <div class="flex align-items-center gap-3 mb-4">
-        <p-floatLabel>
-            <input id="correo" type="text" pInputText [(ngModel)]="email" />
-            <label for="correo">Correo</label>
-        </p-floatLabel>
+    <div class="formulario">
+        <div class="flex align-items-center gap-3 mb-4">
+            <p-floatLabel>
+                <input id="correo" type="text" pInputText [(ngModel)]="email" />
+                <label for="correo">Correo</label>
+            </p-floatLabel>
+        </div>
+
+        <br>
+        <br>
+
+        <div class="flex justify-content-end gap-2 mt-4">
+            <p-floatLabel>
+                <p-password [(ngModel)]="password" [toggleMask]="true" [feedback]="false" />
+                <label for="password">Password</label>
+            </p-floatLabel>
+        </div>
     </div>
 
     <br>
     <br>
-    
-    <div class="flex justify-content-end gap-2 mt-4">
-        <p-floatLabel>
-            <p-password [(ngModel)]="password" [toggleMask]="true" [feedback]="false" />
-            <label for="password">Password</label>
-        </p-floatLabel>
-    </div>
 
-    <br>
-    <br>
-    
     <div class="flex justify-content-end gap-2 mt-4">
-        <p-button label="Login" (onClick)="visible = false" [rounded]="true"></p-button>
+        <!-- <p-button label="Login" (onClick)="visible = false" [rounded]="true"></p-button> -->
+        <p-button label="Login" (onClick)="onLogin()" [rounded]="true"></p-button>
     </div>
 </p-dialog>
+
+
+<p-sidebar [(visible)]="sidebarVisible" position="right">
+    <div class="sidebar-content">
+        <h3>Carrito</h3>
+        <div class="product-list">
+            @for (product of elementsCart; track $index) {
+
+            <div class="product-item">
+                <div class="product-details">
+                    <p class="product-title">{{ product.title }}</p>
+                    <p class="product-price">{{ product.price | currency:'USD' }}</p>
+                </div>
+
+            </div>
+            }
+            <div class="product-actions">
+                <button class="btn-cancel" (click)="closeSide()">Cancelar</button>
+                <button class="btn-buy" (click)="buyProduct()">Comprar</button>
+            </div>
+        </div>
+    </div>
+</p-sidebar>
